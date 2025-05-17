@@ -1,0 +1,90 @@
+@page
+@model MiniAccountSystem.Pages.EditChartOfAccountsModel
+@{
+    ViewData["Title"] = "Edit Chart of Accounts";
+}
+
+<h2>Edit Chart of Accounts</h2>
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+@if (Model.SuccessMessage != null)
+{
+    <div class="alert alert-success">@Model.SuccessMessage</div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Select Account</h3>
+        <form method="get">
+            <div class="form-group">
+                <label for="selectedAccountId">Account</label>
+                <select id="selectedAccountId" name="selectedAccountId" class="form-control" asp-items="@(new SelectList(Model.Accounts, "AccountId", "AccountName", Model.SelectedAccount?.AccountId))" onchange="this.form.submit()">
+                    <option value="">-- Select an Account --</option>
+                </select>
+            </div>
+        </form>
+
+        @if (Model.SelectedAccount != null)
+        {
+            <h3>Edit Account</h3>
+            <form method="post">
+                <input type="hidden" asp-for="SelectedAccount.AccountId" />
+                <div class="form-group">
+                    <label asp-for="SelectedAccount.AccountName">Account Name</label>
+                    <input asp-for="SelectedAccount.AccountName" class="form-control" required />
+                    <span asp-validation-for="SelectedAccount.AccountName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedAccount.ParentAccountId">Parent Account</label>
+                    <select asp-for="SelectedAccount.ParentAccountId" class="form-control" asp-items="@(new SelectList(Model.Accounts.Where(a => a.AccountId != Model.SelectedAccount.AccountId), "AccountId", "AccountName"))">
+                        <option value="">None</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedAccount.AccountType">Account Type</label>
+                    <select asp-for="SelectedAccount.AccountType" class="form-control" required>
+                        <option value="Asset">Asset</option>
+                        <option value="Liability">Liability</option>
+                        <option value="Equity">Equity</option>
+                        <option value="Revenue">Revenue</option>
+                        <option value="Expense">Expense</option>
+                    </select>
+                </div>
+                <button type="submit" asp-page-handler="Update" class="btn btn-primary">Update</button>
+                <button type="button" onclick="deleteAccount(@Model.SelectedAccount.AccountId, '@Model.SelectedAccount.AccountName')" class="btn btn-danger">Delete</button>
+            </form>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function deleteAccount(accountId, accountName) {
+            if (confirm(`Are you sure you want to delete "${accountName}"?`)) {
+                fetch('/ChartOfAccounts/EditChartOfAccounts?handler=Delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: JSON.stringify({ accountId: accountId })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/ChartOfAccounts/EditChartOfAccounts';
+                    } else {
+                        alert('Error deleting account.');
+                    }
+                })
+                .catch(error => alert('Error: ' + error));
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script asp-append-version="true" src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script asp-append-version="true" src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

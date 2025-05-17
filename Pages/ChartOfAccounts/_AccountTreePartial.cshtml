@@ -1,0 +1,15 @@
+@model MiniAccountSystem.Pages.AccountTreeModel.PartialModel
+
+
+@foreach (var account in Model.Accounts.Where(a => a.ParentAccountId == Model.ParentId))
+{
+    <li>
+        <span class="toggle-children">@account.AccountName (@account.AccountType)</span>
+        @if (Model.Accounts.Any(a => a.ParentAccountId == account.AccountId))
+        {
+            <ul class="children">
+                <partial name="_AccountTreePartial" model="@new AccountTreeModel.PartialModel { ParentId = account.AccountId, Accounts = Model.Accounts }" />
+            </ul>
+        }
+    </li>
+}

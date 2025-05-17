@@ -1,0 +1,32 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Create User";
+}
+
+<h2>Create New User</h2>
+
+<form method="post">
+    <div>
+        <label>Username:</label>
+        <input asp-for="NewUser.UserName" />
+    </div>
+    <div>
+        <label>Email:</label>
+        <input asp-for="NewUser.Email" />
+    </div>
+    <div>
+        <label>Password:</label>
+        <input asp-for="NewUser.Password" type="password" />
+    </div>
+    <div>
+        <label>Role:</label>
+        <select asp-for="NewUser.RoleId" asp-items="Model.RoleList"></select>
+    </div>
+    <button type="submit">Create</button>
+</form>
+
+@if (Model.Message != null)
+{
+    <p>@Model.Message</p>
+}

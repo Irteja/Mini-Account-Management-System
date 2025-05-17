@@ -1,0 +1,56 @@
+@page
+@model CreateChartOfAccountsModel
+@{
+    ViewData["Title"] = "Create Chart of Accounts";
+}
+
+<h2>Create New Account</h2>
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+@if (Model.SuccessMessage != null)
+{
+    <div class="alert alert-success">@Model.SuccessMessage</div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Account.AccountName">Account Name</label>
+                <input asp-for="Account.AccountName" class="form-control" required />
+                <span asp-validation-for="Account.AccountName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Account.ParentAccountId">Parent Account</label>
+                <select asp-for="Account.ParentAccountId" class="form-control">
+                    <option value="">-- None --</option>
+                    @foreach (var account in Model.Accounts)
+                    {
+                        <option value="@account.AccountId">@account.AccountName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Account.AccountType">Account Type</label>
+                <select asp-for="Account.AccountType" class="form-control" required>
+                    <option value="">-- Select Type --</option>
+                    <option value="Asset">Asset</option>
+                    <option value="Liability">Liability</option>
+                    <option value="Equity">Equity</option>
+                    <option value="Revenue">Revenue</option>
+                    <option value="Expense">Expense</option>
+                </select>
+                <span asp-validation-for="Account.AccountType" class="text-danger"></span>
+            </div>
+            <button type="submit" asp-page-handler="Create" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

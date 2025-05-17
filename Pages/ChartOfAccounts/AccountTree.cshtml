@@ -1,0 +1,68 @@
+@page
+@model MiniAccountSystem.Pages.AccountTreeModel
+@{
+    ViewData["Title"] = "Account Hierarchy";
+}
+
+<h2>Account Hierarchy</h2>
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="account-tree">
+            @foreach (var account in Model.Accounts.Where(a => a.ParentAccountId == null))
+            {
+                <li>
+                    <span class="toggle-children">@account.AccountName (@account.AccountType)</span>
+                    @if (Model.Accounts.Any(a => a.ParentAccountId == account.AccountId))
+                    {
+                        
+                        <ul class="children">
+                            <partial name="ChartOfAccounts/_AccountTreePartial" model="@new AccountTreeModel.PartialModel { ParentId = account.AccountId, Accounts = Model.Accounts }" />
+                        </ul>
+                    }
+
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<style>
+    .account-tree {
+        list-style-type: none;
+        padding-left: 20px;
+    }
+    .account-tree li {
+        margin: 5px 0;
+    }
+    .toggle-children {
+        cursor: pointer;
+        color: #007bff;
+    }
+    .toggle-children:hover {
+        text-decoration: underline;
+    }
+    .children {
+        display: none;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Toggle child accounts visibility
+        document.querySelectorAll('.toggle-children').forEach(toggle => {
+            toggle.addEventListener('click', function () {
+                const children = this.parentElement.querySelector('.children');
+                if (children) {
+                    children.style.display = children.style.display === 'none' ? 'block' : 'none';
+                }
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+}
