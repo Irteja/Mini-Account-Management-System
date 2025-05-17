@@ -166,3 +166,4 @@
 /media/irteja/New Volume/web project/MiniAccountSystem/obj/Debug/net8.0/MiniAccountSystem.pdb
 /media/irteja/New Volume/web project/MiniAccountSystem/obj/Debug/net8.0/MiniAccountSystem.genruntimeconfig.cache
 /media/irteja/New Volume/web project/MiniAccountSystem/obj/Debug/net8.0/ref/MiniAccountSystem.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/obj/Debug/net8.0/MiniAccountSystem.sourcelink.json
