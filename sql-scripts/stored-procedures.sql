@@ -49,5 +49,56 @@ ELSE IF @Action = 'Select' BEGIN SELECT AccountId, AccountName, ParentAccountId,
 END
 GO
 
+CREATE TYPE VoucherEntryType AS TABLE
+(
+    AccountId INT,
+    Debit DECIMAL(18,2),
+    Credit DECIMAL(18,2),
+    Description NVARCHAR(200)
+);
+GO
+
+CREATE PROCEDURE sp_SaveVoucher
+    @VoucherType NVARCHAR(20),
+    @Date DATE,
+    @ReferenceNo NVARCHAR(50),
+    @Entries VoucherEntryType READONLY,
+    @Result NVARCHAR(200) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        -- Validate inputs
+        IF @VoucherType NOT IN ('Journal', 'Payment', 'Receipt')
+            THROW 50001, 'Invalid voucher type.', 1;
+        IF @Date IS NULL OR @ReferenceNo IS NULL
+            THROW 50002, 'Date and ReferenceNo are required.', 1;
+
+        -- Check if ReferenceNo is unique
+        IF EXISTS (SELECT 1 FROM Vouchers WHERE ReferenceNo = @ReferenceNo)
+            THROW 50003, 'Reference number already exists.', 1;
+
+        -- Validate entries: at least two entries, debits = credits
+        DECLARE @TotalDebit DECIMAL(18,2) = (SELECT SUM(Debit) FROM @Entries);
+        DECLARE @TotalCredit DECIMAL(18,2) = (SELECT SUM(Credit) FROM @Entries);
+        IF @TotalDebit IS NULL OR @TotalCredit IS NULL OR @TotalDebit = 0
+            THROW 50004, 'At least two entries with non-zero debit and credit required.', 1;
+        IF @TotalDebit != @TotalCredit
+            THROW 50005, 'Debits must equal credits.', 1;
+
+        -- Insert entries
+        INSERT INTO Vouchers (VoucherType, Date, ReferenceNo, AccountId, Debit, Credit, Description)
+        SELECT @VoucherType, @Date, @ReferenceNo, AccountId, Debit, Credit, Description
+        FROM @Entries;
+
+        SET @Result = 'Voucher saved successfully.';
+    END TRY
+    BEGIN CATCH
+        SET @Result = ERROR_MESSAGE();
+        THROW;
+    END CATCH
+END
+GO
+
 
 
