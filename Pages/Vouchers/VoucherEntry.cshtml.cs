@@ -5,16 +5,20 @@ using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using MiniAccountSystem.Services;
 
 namespace MiniAccountSystem.Pages.Vouchers
 {
     public class VoucherEntryModel : PageModel
     {
         private readonly string _connectionString;
+        private readonly PermissionService _permissionService;
 
-        public VoucherEntryModel(IConfiguration configuration)
+        public VoucherEntryModel(IConfiguration configuration, PermissionService permissionService)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection")!;
+            _permissionService = permissionService;
         }
 
         [BindProperty]
@@ -27,6 +31,12 @@ namespace MiniAccountSystem.Pages.Vouchers
 
         public async Task<IActionResult> OnGetAsync()
         {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (!User.Identity.IsAuthenticated! || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "VoucherEntry"))
+            {
+                return RedirectToPage("/Users/Login");
+            }
+
             try
             {
                 await LoadAccountsAsync();

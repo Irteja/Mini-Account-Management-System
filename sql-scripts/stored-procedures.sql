@@ -101,4 +101,31 @@ END
 GO
 
 
+CREATE PROCEDURE CheckUserModulePermission
+    @Email NVARCHAR(100),
+    @ModuleName NVARCHAR(100),
+    @HasPermission BIT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SET @HasPermission = 0;
+
+    SELECT @HasPermission = CASE 
+        WHEN rp.CanAccess = 1 THEN 1 
+        ELSE 0 
+    END
+    FROM Users u
+    INNER JOIN Roles r ON u.RoleId = r.RoleId
+    INNER JOIN RolePermissions rp ON r.RoleId = rp.RoleId
+    INNER JOIN Modules m ON rp.ModuleId = m.ModuleId
+    WHERE u.Email = @Email 
+    AND m.ModuleName = @ModuleName;
+
+    IF @HasPermission IS NULL
+        SET @HasPermission = 0;
+END;
+GO
+
+
 
