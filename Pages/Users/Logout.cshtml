@@ -1,0 +1,19 @@
+@page
+@model MiniAccountSystem.Pages.Account.LogoutModel
+@{
+    ViewData["Title"] = "Logout";
+}
+
+<h2>Logout</h2>
+
+<p>Are you sure you want to log out?</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-primary">Logout</button>
+    <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+}

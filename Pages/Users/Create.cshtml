@@ -3,30 +3,38 @@
 @{
     ViewData["Title"] = "Create User";
 }
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2>Create New User</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Username:</label>
+                    <input class="form-control" asp-for="NewUser.UserName" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Email:</label>
+                    <input class="form-control" asp-for="NewUser.Email" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Password:</label>
+                    <input class="form-control" asp-for="NewUser.Password" type="password" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Role:</label>
+                    <select asp-for="NewUser.RoleId" class="form-control" asp-items="Model.RoleList"></select>
+                </div>
+                <button type="submit" class="btn btn-success">Create</button>
+            </form>
 
-<h2>Create New User</h2>
 
-<form method="post">
-    <div>
-        <label>Username:</label>
-        <input asp-for="NewUser.UserName" />
-    </div>
-    <div>
-        <label>Email:</label>
-        <input asp-for="NewUser.Email" />
-    </div>
-    <div>
-        <label>Password:</label>
-        <input asp-for="NewUser.Password" type="password" />
-    </div>
-    <div>
-        <label>Role:</label>
-        <select asp-for="NewUser.RoleId" asp-items="Model.RoleList"></select>
-    </div>
-    <button type="submit">Create</button>
-</form>
 
-@if (Model.Message != null)
-{
-    <p>@Model.Message</p>
-}
+            @if (Model.Message != null)
+            {
+                <p>@Model.Message</p>
+            }
+        </div>
+    </div>
+</div>

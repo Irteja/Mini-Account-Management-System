@@ -9,71 +9,79 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MiniAccountSystem
 build_property.RootNamespace = MiniAccountSystem
-build_property.ProjectDir = /media/irteja/New Volume1/web project/MiniAccountSystem/
+build_property.ProjectDir = /media/irteja/New Volume/web project/MiniAccountSystem/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /media/irteja/New Volume1/web project/MiniAccountSystem
+build_property.MSBuildProjectDirectory = /media/irteja/New Volume/web project/MiniAccountSystem
 build_property._RazorSourceGeneratorDebug = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/ChartOfAccounts/AccountTree.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/AccountTree.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL0FjY291bnRUcmVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/ChartOfAccounts/ChartOfAccounts.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/ChartOfAccounts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL0NoYXJ0T2ZBY2NvdW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/ChartOfAccounts/EditChartOfAccounts.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/EditChartOfAccounts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL0VkaXRDaGFydE9mQWNjb3VudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/ChartOfAccounts/_AccountTreePartial.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/_AccountTreePartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL19BY2NvdW50VHJlZVBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Error.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Index.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Permissions/Assign.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Permissions/Assign.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGVybWlzc2lvbnMvQXNzaWduLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Privacy.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Users/Create.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Vouchers/VoucherEntry.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Users/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Users/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Vouchers/VoucherEntry.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVm91Y2hlcnMvVm91Y2hlckVudHJ5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Vouchers/VoucherList.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Vouchers/VoucherList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVm91Y2hlcnMvVm91Y2hlckxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/_ViewImports.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/_ViewStart.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/media/irteja/New Volume1/web project/MiniAccountSystem/Pages/Shared/_Layout.cshtml]
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-d6z4x5ynl2

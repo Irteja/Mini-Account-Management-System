@@ -3,42 +3,49 @@
 @{
     ViewData["Title"] = "Assign Permissions";
 }
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2>Assign Module Access to Role</h2>
+        </div>
+        <div class="card-body">
+            <!-- GET Form for selecting the role -->
+            <form method="get">
+                <label>Select Role:</label>
+                <select name="roleId" asp-for="SelectedRoleId" asp-items="Model.RoleList"
+                    onchange="this.form.submit()"></select>
+            </form>
 
-<h2>Assign Module Access to Role</h2>
-
-<!-- GET Form for selecting the role -->
-<form method="get">
-    <label>Select Role:</label>
-    <select name="roleId" asp-for="SelectedRoleId" asp-items="Model.RoleList" onchange="this.form.submit()"></select>
-</form>
-
-<!-- POST Form for saving permissions -->
-@if (Model.ModulesWithAccess.Any())
-{
-    <form method="post">
-        <input type="hidden" asp-for="SelectedRoleId" />
-        <table>
-            <tr>
-                <th>Module</th>
-                <th>Can Access</th>
-            </tr>
-            @for (int i = 0; i < Model.ModulesWithAccess.Count; i++)
+            <!-- POST Form for saving permissions -->
+            @if (Model.ModulesWithAccess.Any())
             {
-                <tr>
-                    <td>@Model.ModulesWithAccess[i].ModuleName</td>
-                    <td>
-                        <input type="checkbox" asp-for="ModulesWithAccess[i].CanAccess" />
-                        <input type="hidden" asp-for="ModulesWithAccess[i].ModuleId" />
-                        <input type="hidden" asp-for="ModulesWithAccess[i].ModuleName" />
-                    </td>
-                </tr>
+                <form method="post">
+                    <input type="hidden" asp-for="SelectedRoleId" />
+                    <table>
+                        <tr>
+                            <th>Module</th>
+                            <th>Can Access</th>
+                        </tr>
+                        @for (int i = 0; i < Model.ModulesWithAccess.Count; i++)
+                        {
+                            <tr>
+                                <td>@Model.ModulesWithAccess[i].ModuleName</td>
+                                <td>
+                                    <input type="checkbox" asp-for="ModulesWithAccess[i].CanAccess" />
+                                    <input type="hidden" asp-for="ModulesWithAccess[i].ModuleId" />
+                                    <input type="hidden" asp-for="ModulesWithAccess[i].ModuleName" />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                    <button type="submit">Save Permissions</button>
+                </form>
             }
-        </table>
-        <button type="submit">Save Permissions</button>
-    </form>
-}
 
-@if (!string.IsNullOrEmpty(Model.Message))
-{
-    <p>@Model.Message</p>
-}
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <p>@Model.Message</p>
+            }
+        </div>
+    </div>
+</div>

@@ -83,7 +83,6 @@ public class CreateModel : PageModel
 
     private string HashPassword(string password)
     {
-        // Simple hash (replace with real hashing like BCrypt in production)
         return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(password));
     }
 

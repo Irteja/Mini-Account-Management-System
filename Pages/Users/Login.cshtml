@@ -1,0 +1,35 @@
+@page
+@model MiniAccountSystem.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="LoginInput.Email">Email</label>
+        <input asp-for="LoginInput.Email" class="form-control" required />
+        <span asp-validation-for="LoginInput.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LoginInput.Password">Password</label>
+        <input asp-for="LoginInput.Password" class="form-control" type="password" required />
+        <span asp-validation-for="LoginInput.Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script asp-append-version="true" src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script asp-append-version="true" src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
