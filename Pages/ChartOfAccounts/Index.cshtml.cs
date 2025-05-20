@@ -6,6 +6,7 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using MiniAccountSystem.Services;
 
 namespace MiniAccountSystem.Pages
 {
@@ -13,9 +14,11 @@ namespace MiniAccountSystem.Pages
     {
         private readonly string _connectionString;
 
-        public AccountTreeModel(IConfiguration configuration)
+        private readonly PermissionService _permissionService;
+        public AccountTreeModel(IConfiguration configuration, PermissionService permissionService)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection")!;
+             _permissionService = permissionService;
         }
 
         public List<Account> Accounts { get; set; } = new List<Account>();
@@ -24,6 +27,11 @@ namespace MiniAccountSystem.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (!User.Identity.IsAuthenticated! || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "VoucherEntry"))
+            {
+                return RedirectToPage("/Users/Login");
+            }
 
             try
             {

@@ -18,16 +18,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /media/irteja/New Volume/web project/MiniAccountSystem
 build_property._RazorSourceGeneratorDebug = 
 
-[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/AccountTree.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL0FjY291bnRUcmVlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/ChartOfAccounts.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL0NoYXJ0T2ZBY2NvdW50cy5jc2h0bWw=
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/AddAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL0FkZEFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/EditChartOfAccounts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL0VkaXRDaGFydE9mQWNjb3VudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhcnRPZkFjY291bnRzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/media/irteja/New Volume/web project/MiniAccountSystem/Pages/ChartOfAccounts/_AccountTreePartial.cshtml]
@@ -40,6 +40,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Modules/AddModule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTW9kdWxlcy9BZGRNb2R1bGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Modules/ManageModules.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTW9kdWxlcy9NYW5hZ2VNb2R1bGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/media/irteja/New Volume/web project/MiniAccountSystem/Pages/Permissions/Assign.cshtml]

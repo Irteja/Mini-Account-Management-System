@@ -182,3 +182,11 @@
 /media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/Microsoft.Extensions.ObjectPool.dll
 /media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/Microsoft.Extensions.WebEncoders.dll
 /media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/System.Security.Cryptography.Xml.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/ClosedXML.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/ClosedXML.Parser.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/DocumentFormat.OpenXml.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/DocumentFormat.OpenXml.Framework.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/ExcelNumberFormat.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/RBush.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/SixLabors.Fonts.dll
+/media/irteja/New Volume/web project/MiniAccountSystem/bin/Debug/net8.0/System.IO.Packaging.dll

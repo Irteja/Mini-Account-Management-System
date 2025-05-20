@@ -1,0 +1,38 @@
+@page
+@model MiniAccountSystem.Pages.Modules.AddModuleModel
+@{
+    ViewData["Title"] = "Add Module";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Add New Module</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="ModuleName" class="form-label fw-bold">Module Name</label>
+                    <input asp-for="ModuleName" class="form-control" placeholder="Enter module name" />
+                    <span asp-validation-for="ModuleName" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-success">Add Module</button>
+                <a asp-page="/Index" class="btn btn-secondary ms-2">Cancel</a>
+            </form>
+
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert alert-info mt-3" role="alert">
+                    @Model.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script asp-append-version="true" src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script asp-append-version="true" src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

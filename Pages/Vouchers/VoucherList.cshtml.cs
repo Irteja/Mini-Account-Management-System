@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
+using ClosedXML.Excel;
 
 namespace MiniAccountSystem.Pages.Vouchers
 {
@@ -35,6 +36,53 @@ namespace MiniAccountSystem.Pages.Vouchers
             }
         }
 
+        public async Task<IActionResult> OnPostExportExcelAsync()
+        {
+            try
+            {
+                await LoadVouchersAsync();
+
+                using var workbook = new XLWorkbook();
+                var worksheet = workbook.Worksheets.Add("Vouchers");
+
+
+                worksheet.Cell(1, 1).Value = "Date";
+                worksheet.Cell(1, 2).Value = "Voucher Type";
+                worksheet.Cell(1, 3).Value = "Reference No.";
+                worksheet.Cell(1, 4).Value = "Account";
+                worksheet.Cell(1, 5).Value = "Debit";
+                worksheet.Cell(1, 6).Value = "Credit";
+                worksheet.Cell(1, 7).Value = "Description";
+
+
+                for (int i = 0; i < Vouchers.Count; i++)
+                {
+                    var voucher = Vouchers[i];
+                    worksheet.Cell(i + 2, 1).Value = voucher.Date.ToString("yyyy-MM-dd");
+                    worksheet.Cell(i + 2, 2).Value = voucher.VoucherType;
+                    worksheet.Cell(i + 2, 3).Value = voucher.ReferenceNo;
+                    worksheet.Cell(i + 2, 4).Value = voucher.AccountName;
+                    worksheet.Cell(i + 2, 5).Value = voucher.Debit;
+                    worksheet.Cell(i + 2, 6).Value = voucher.Credit;
+                    worksheet.Cell(i + 2, 7).Value = voucher.Description;
+                }
+
+
+                worksheet.Columns().AdjustToContents();
+
+                using var stream = new MemoryStream();
+                workbook.SaveAs(stream);
+                var content = stream.ToArray();
+
+                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Vouchers.xlsx");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Error exporting to Excel: {ex.Message}";
+                await LoadVouchersAsync();
+                return Page();
+            }
+        }
         private async Task LoadVouchersAsync()
         {
             Vouchers = new List<Voucher>();
@@ -56,7 +104,7 @@ namespace MiniAccountSystem.Pages.Vouchers
                     AccountName = reader.GetString("AccountName"),
                     Debit = reader.GetDecimal("Debit"),
                     Credit = reader.GetDecimal("Credit"),
-                    Description = reader.IsDBNull("Description") ? null : reader.GetString("Description")
+                    Description = reader.IsDBNull("Description") ? null! : reader.GetString("Description")
                 });
             }
         }
