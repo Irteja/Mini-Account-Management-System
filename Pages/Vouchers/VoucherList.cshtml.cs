@@ -6,16 +6,19 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using ClosedXML.Excel;
+using MiniAccountSystem.Services;
+using System.Security.Claims;
 
 namespace MiniAccountSystem.Pages.Vouchers
 {
     public class VoucherListModel : PageModel
     {
         private readonly string _connectionString;
-
-        public VoucherListModel(IConfiguration configuration)
+        private readonly PermissionService _permissionService;
+        public VoucherListModel(IConfiguration configuration, PermissionService permissionService)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection")!;
+            _permissionService = permissionService;
         }
 
         public List<Voucher> Vouchers { get; set; } = new List<Voucher>();
@@ -24,6 +27,11 @@ namespace MiniAccountSystem.Pages.Vouchers
 
         public async Task<IActionResult> OnGetAsync()
         {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Voucher List"))
+            {
+                return RedirectToPage("/Users/Login");
+            }
             try
             {
                 await LoadVouchersAsync();
@@ -38,6 +46,12 @@ namespace MiniAccountSystem.Pages.Vouchers
 
         public async Task<IActionResult> OnPostExportExcelAsync()
         {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Voucher List"))
+            {
+                return RedirectToPage("/Users/Login");
+            }
+
             try
             {
                 await LoadVouchersAsync();

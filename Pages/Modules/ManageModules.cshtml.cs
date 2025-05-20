@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using MiniAccountSystem.Services;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MiniAccountSystem.Pages.Modules
@@ -13,10 +15,12 @@ namespace MiniAccountSystem.Pages.Modules
     public class ManageModulesModel : PageModel
     {
         private readonly string _connectionString;
+        private readonly PermissionService _permissionService;
 
-        public ManageModulesModel(IConfiguration configuration)
+        public ManageModulesModel(IConfiguration configuration, PermissionService permissionService)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection")!;
+            _permissionService = permissionService;
         }
 
         [BindProperty]
@@ -31,6 +35,12 @@ namespace MiniAccountSystem.Pages.Modules
 
         public async Task<IActionResult> OnGetAsync(int? moduleId)
         {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Manage Module"))
+            {
+                return RedirectToPage("/Users/Login");
+            }
+
             await LoadModulesAsync();
             SelectedModuleId = moduleId;
 
@@ -49,6 +59,11 @@ namespace MiniAccountSystem.Pages.Modules
 
         public async Task<IActionResult> OnPostEditAsync()
         {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Manage Module"))
+            {
+                return RedirectToPage("/Users/Login");
+            }
             if (!ModelState.IsValid || SelectedModule == null || !SelectedModuleId.HasValue)
             {
                 Message = "Please provide a valid module name.";
@@ -90,6 +105,11 @@ namespace MiniAccountSystem.Pages.Modules
 
         public async Task<IActionResult> OnPostDeleteAsync()
         {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Manage Module"))
+            {
+                return RedirectToPage("/Users/Login");
+            }
             if (!SelectedModuleId.HasValue)
             {
                 Message = "No module selected.";

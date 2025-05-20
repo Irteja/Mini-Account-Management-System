@@ -5,6 +5,8 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using System.Security.Claims;
+using MiniAccountSystem.Services;
 public class CreateModel : PageModel
 {
     [BindProperty]
@@ -15,16 +17,24 @@ public class CreateModel : PageModel
 
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
-
-    public CreateModel(IConfiguration configuration)
+    private readonly PermissionService _permissionService;
+    public CreateModel(IConfiguration configuration, PermissionService permissionService)
     {
         _configuration = configuration;
         _connectionString = _configuration.GetConnectionString("DefaultConnection")!;
+        _permissionService = permissionService;
     }
 
-    public void OnGet()
+    public async Task<IActionResult> OnGetAsync()
     {
+        var email = User.FindFirst(ClaimTypes.Email)?.Value;
+        if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Create User"))
+        {
+            return RedirectToPage("/Users/Login");
+        }
         LoadRoles();
+
+        return Page();
     }
 
     public void LoadRoles()

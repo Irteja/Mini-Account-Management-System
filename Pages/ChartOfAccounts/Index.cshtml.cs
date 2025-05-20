@@ -28,7 +28,7 @@ namespace MiniAccountSystem.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             var email = User.FindFirst(ClaimTypes.Email)?.Value;
-            if (!User.Identity.IsAuthenticated! || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "VoucherEntry"))
+            if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Chart of account"))
             {
                 return RedirectToPage("/Users/Login");
             }
@@ -65,7 +65,7 @@ namespace MiniAccountSystem.Pages
                     AccountId = reader.GetInt32("AccountId"),
                     AccountName = reader.GetString("AccountName"),
                     ParentAccountId = reader.IsDBNull("ParentAccountId") ? null : reader.GetInt32("ParentAccountId"),
-                    AccountType = reader.IsDBNull("AccountType") ? null : reader.GetString("AccountType")
+                    AccountType = reader.IsDBNull("AccountType") ? null! : reader.GetString("AccountType")
                 });
             }
             // Console.WriteLine($"Loaded: AccountId={Accounts[2].AccountId}, Name={Accounts[2].AccountName}, ParentId={Accounts[2].ParentAccountId}");
