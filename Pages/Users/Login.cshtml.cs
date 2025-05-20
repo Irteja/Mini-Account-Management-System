@@ -26,6 +26,10 @@ namespace MiniAccountSystem.Pages.Account
 
         public IActionResult OnGet()
         {
+            if (User.Identity!.IsAuthenticated)
+            {
+                return RedirectToPage("/ChartOfAccounts/Index");
+            }
             return Page();
         }
 

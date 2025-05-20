@@ -4,14 +4,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using MiniAccountSystem.Services;
+using System.Security.Claims;
 
 public class AssignModel : PageModel
 {
     private readonly IConfiguration _configuration;
-
-    public AssignModel(IConfiguration configuration)
+    private readonly PermissionService _permissionService;
+    public AssignModel(IConfiguration configuration, PermissionService permissionService)
     {
         _configuration = configuration;
+        _permissionService = permissionService;
     }
 
     [BindProperty]
@@ -23,8 +26,13 @@ public class AssignModel : PageModel
     public List<SelectListItem> RoleList { get; set; } = new();
     public string Message { get; set; } = string.Empty;
 
-    public void OnGet(int? roleId=1)
+    public async Task<IActionResult> OnGetAsync(int? roleId = 1)
     {
+        var email = User.FindFirst(ClaimTypes.Email)?.Value;
+        if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Permission Pages"))
+        {
+            return RedirectToPage("/Users/Login");
+        }
         LoadRoles();
 
         if (roleId.HasValue)
@@ -32,6 +40,7 @@ public class AssignModel : PageModel
             SelectedRoleId = roleId.Value;
             LoadPermissionsForRole(roleId.Value);
         }
+        return Page();
     }
     public void LoadPermissionsForRole(int roleId)
     {
@@ -81,13 +90,18 @@ public class AssignModel : PageModel
 
 
 
-    public void OnPost()
+    public async Task<IActionResult> OnPostAsync()
     {
+        var email = User.FindFirst(ClaimTypes.Email)?.Value;
+        if (!User.Identity!.IsAuthenticated || string.IsNullOrEmpty(email) || !await _permissionService.CheckPermissionAsync(email, "Permission Pages"))
+        {
+            return RedirectToPage("/Users/Login");
+        }
         LoadRoles();
 
         if (Request.Form.ContainsKey("SelectedRoleId"))
         {
-            SelectedRoleId = int.Parse(Request.Form["SelectedRoleId"]);
+            SelectedRoleId = int.Parse(Request.Form["SelectedRoleId"]!);
         }
 
         if (ModulesWithAccess.Count == 0 && SelectedRoleId > 0)
@@ -145,6 +159,7 @@ public class AssignModel : PageModel
             cmd.ExecuteNonQuery();
             Message = "Permissions updated!";
         }
+        return Page();
     }
 
     public class ModuleAccessModel

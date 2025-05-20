@@ -1,6 +1,9 @@
 -- Users (handled mostly by ASP.NET Identity)
 -- But for custom roles and access, we’ll have our own additional tables
 
+CREATE DATABASE MiniAccountDB;
+
+
 CREATE TABLE Roles (
     RoleId INT PRIMARY KEY IDENTITY,
     RoleName NVARCHAR(50) UNIQUE NOT NULL

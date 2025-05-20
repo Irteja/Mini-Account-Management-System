@@ -23,16 +23,37 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="chartofaccount" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Chart Of Accout
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="chartofaccount">
+                                <li><a class="dropdown-item" asp-page="/ChartOfAccounts/Index">Chart List</a></li>
+                                <li><a class="dropdown-item" asp-page="/ChartOfAccounts/AddAccount">Add Account</a></li>
+                                <li><a class="dropdown-item" asp-page="/ChartOfAccounts/EditChartOfAccounts">Edit
+                                        Account</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="vouchersDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Vouchers
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="vouchersDropdown">
+                                <li><a class="dropdown-item" asp-page="/Vouchers/VoucherEntry">Voucher Entry</a></li>
+                                <li><a class="dropdown-item" asp-page="/Vouchers/VoucherList">Voucher List</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Permissions/Assign">Module Permissions</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Users/Create">Create User</a>
+                        </li>
                     </ul>
                 </div>
-                @if (User.Identity.IsAuthenticated)
+                @if (User.Identity!.IsAuthenticated)
                 {
                     <a asp-page="/Users/Logout" class="btn btn-link">Logout</a>
                 }

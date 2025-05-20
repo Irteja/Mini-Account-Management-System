@@ -32,6 +32,7 @@ namespace MiniAccountSystem.Pages.Vouchers
             {
                 return RedirectToPage("/Users/Login");
             }
+            
             try
             {
                 await LoadVouchersAsync();
