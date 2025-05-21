@@ -288,7 +288,7 @@ Update `appsettings.json`:
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=your_server;Database=MiniAccountSystem;User Id=your_username;Password=your_password;TrustServerCertificate=True;"
+    "DefaultConnection": "Server=your_server;Database=MiniAccountDB;User Id=your_username;Password=your_password;TrustServerCertificate=True;"
   }
 }
 ```
@@ -365,7 +365,7 @@ dotnet run
 
 ## Screenshots
 
-Below are placeholders for screenshots. Add images to the `Screenshots` folder and update the paths if needed.
+Below are some screenshots of the projects.
 
 ### Login Page
 ![Login](wwwroot/screenshot-for-mini-account-system/image-1.png)
