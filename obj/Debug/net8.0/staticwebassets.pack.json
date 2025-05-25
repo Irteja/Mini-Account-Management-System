@@ -245,6 +245,38 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
+      "Id": "/media/irteja/New Volume/web project/MiniAccountSystem/wwwroot/screenshot-for-mini-account-system/image-1.png",
+      "PackagePath": "staticwebassets/screenshot-for-mini-account-system/image-1.png"
+    },
+    {
+      "Id": "/media/irteja/New Volume/web project/MiniAccountSystem/wwwroot/screenshot-for-mini-account-system/image-2.png",
+      "PackagePath": "staticwebassets/screenshot-for-mini-account-system/image-2.png"
+    },
+    {
+      "Id": "/media/irteja/New Volume/web project/MiniAccountSystem/wwwroot/screenshot-for-mini-account-system/image-3.png",
+      "PackagePath": "staticwebassets/screenshot-for-mini-account-system/image-3.png"
+    },
+    {
+      "Id": "/media/irteja/New Volume/web project/MiniAccountSystem/wwwroot/screenshot-for-mini-account-system/image-4.png",
+      "PackagePath": "staticwebassets/screenshot-for-mini-account-system/image-4.png"
+    },
+    {
+      "Id": "/media/irteja/New Volume/web project/MiniAccountSystem/wwwroot/screenshot-for-mini-account-system/image-5.png",
+      "PackagePath": "staticwebassets/screenshot-for-mini-account-system/image-5.png"
+    },
+    {
+      "Id": "/media/irteja/New Volume/web project/MiniAccountSystem/wwwroot/screenshot-for-mini-account-system/image-6.png",
+      "PackagePath": "staticwebassets/screenshot-for-mini-account-system/image-6.png"
+    },
+    {
+      "Id": "/media/irteja/New Volume/web project/MiniAccountSystem/wwwroot/screenshot-for-mini-account-system/image-7.png",
+      "PackagePath": "staticwebassets/screenshot-for-mini-account-system/image-7.png"
+    },
+    {
+      "Id": "/media/irteja/New Volume/web project/MiniAccountSystem/wwwroot/screenshot-for-mini-account-system/image-8.png",
+      "PackagePath": "staticwebassets/screenshot-for-mini-account-system/image-8.png"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.MiniAccountSystem.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

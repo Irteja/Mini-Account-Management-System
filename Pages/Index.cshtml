@@ -1,10 +1,69 @@
 ﻿@page
-@model IndexModel
+@model MiniAccountSystem.Pages.IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home - Mini Account Management System";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="card shadow-sm text-center">
+        <div class="card-header bg-primary text-white">
+            <h1 class="mb-0">Welcome to Mini Account Management System</h1>
+        </div>
+        <div class="card-body">
+            <p class="lead">
+                A lightweight solution for managing user accounts, roles, permissions, and financial vouchers with a secure, role-based interface.
+            </p>
+            @if (User.Identity!.IsAuthenticated)
+            {
+                <div class="alert alert-success" role="alert">
+                    Welcome, @User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value!.
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info" role="alert">
+                    Please <a asp-page="/Users/Login" class="alert-link">log in</a> to access the system.
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="card shadow-sm mt-4">
+        <div class="card-header bg-secondary text-white">
+            <h3 class="mb-0">Features</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>User Management</h5>
+                    <p>Create and manage users with role assignments (Admin, Accountant, Viewer).</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Role-Based Permissions</h5>
+                    <p>Assign module access to roles for secure, controlled navigation.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Voucher Management</h5>
+                    <p>Enter, view, and export financial vouchers to Excel for accounting tasks.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Module Management</h5>
+                    <p>Add, edit, or delete system modules to customize functionality.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Responsive Design</h5>
+                    <p>Bootstrap-powered UI for seamless use on desktop and mobile devices.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Extensible</h5>
+                    <p>Built for easy addition of new features like reports or chart of accounts.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+}
